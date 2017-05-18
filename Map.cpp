@@ -2,7 +2,11 @@
 
 Map::Map()
 {
-
+    for (int i = 0; i < 999999; ++i)
+	{
+		 //array.push_back(new vector< pair<string,int>* >);
+		array.push_back(0);
+	}
 }
 
 int Map::hash(string str)
@@ -19,21 +23,21 @@ int Map::hash(string str)
 
 void Map::put(string key, int value)
 {
-    int rehash = 0;
-    while(array[hash(key,rehash)]->first != ""
-        && array[hash(key,rehash)]->first != "deleted")
-    {
-        rehash++;
-    }
-    array[hash(key,rehash)] = new pair<string, int>(key,value);
-    size++;
-
-
+    int index = hash(key);
+	if (index >=0 && index < array.size())
+	{
+		if (array[index]!=0)
+		{
+			array[index] *= value;
+		}else{
+			array[index] = value;
+		}
+	}
 }
 
 int Map::get(string key)
 {
-    int rehash = 0;
+    /*int rehash = 0;
     pair<string, int> current_pair;
     do
     {
@@ -44,7 +48,13 @@ int Map::get(string key)
 
     }while(current_pair.first != "");
 
-    return -1;
+    return -1;*/
+    int rehas = hash(key);
+	if (rehas >=0 && rehas < array.size())
+	{
+		return array[rehas];
+	}
+	return -1;
 }
 
 

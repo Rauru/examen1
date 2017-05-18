@@ -16,6 +16,7 @@ class Map
     void clear();
     int getSize();
     bool isEmpty();
+    vector<int> array;
 };
 
 
