@@ -23,14 +23,24 @@ int Map::hash(string str)
 
 void Map::put(string key, int value)
 {
-    int index = hash(key);
-	if (index >=0 && index < array.size())
+    /*
+    int rehash = 0;
+    while(array[hash(key,rehash)]->first != ""
+            && array[hash(key,rehash)]->first != "deleted")
+    {
+        rehash++;
+    }
+    array[hash(key,rehash)] = new pair<string, int>(key,value);
+    size++;
+    */
+    int rehash = hash(key);
+	if (rehash >=0 && rehash < array.size())
 	{
-		if (array[index]!=0)
+		if (array[rehash]!=0)
 		{
-			array[index] *= value;
+			array[rehash] *= value;
 		}else{
-			array[index] = value;
+			array[rehash] = value;
 		}
 	}
 }
